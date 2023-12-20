@@ -1,0 +1,503 @@
+:root {
+    --color-barra-lateral: rgb(255, 255, 255);
+
+    --color-text: rgb(0, 0, 0);
+    --color-text-menu: rgb(134, 136, 144);
+
+    --color-boton: rgb(0, 0, 0);
+    --color-boton-texto: rgb(255, 255, 255);
+
+    --color-menu-hover-texto: rgb(0, 0, 0);
+    --color-menu-hover: rgb(238, 238, 238);
+
+    --color-linea: rgb(45, 0, 248);
+
+    --color-switch--base: rgb(7, 55, 248);
+    --color-switch-circulo: rgb(241, 241, 241);
+
+}
+
+/*  Globales **/
+html {
+    box-sizing: border-box;
+    /* Hack para Box Model para evitar que los elementos se sumen y stamos hablando con respecto a su tamaño , como padding margen with **/
+    scroll-snap-type: y mandatory;
+}
+
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+
+    background-color: var(--color-barra-lateral);
+    color: var(--color-text);
+    scroll-snap-points-y: repeat(100vh);
+    scroll-snap-type: y mandatory;
+    overflow: hidden;
+}
+
+#line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: white;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#svgContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+#circle {
+    height: 100vh;
+    width: 100%;
+   
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 80;
+    background: transparent;
+}
+#circle img {
+    position: absolute;
+    width: 10vw;
+    /* Cambiado a unidades relativas */
+    height: 10vw;
+    background-color: transparent;
+    border-radius: 50%;
+    top: calc(50% - 5vw);
+    left: calc(50% - 5vw);
+    animation: rotate 4s forwards;
+    z-index: 100;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* #container.opened {
+    animation: openContainer 2s forwards;
+} */
+
+#topHalf {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -420px;
+    right: -33px;
+    left: 1000;
+    z-index: 90;
+    background: linear-gradient(to right, #F7931E, #FFBA31, #FFD279, #FFBA31, #F7931E);
+    animation: rotateTop 4s forwards;
+}
+
+#topHalf.opened {
+    animation: moveUp 2s forwards;
+}
+
+@keyframes rotateTop {
+    0% {
+        transform: rotate(154deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+#bottomHalf {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    bottom: -497px;
+    background: linear-gradient(to right, #F7931E, #FFBA31, #FFD279, #FFBA31, #F7931E);
+    z-index: 90;
+    animation: rotateBottom 4s forwards;
+}
+
+#bottomHalf.opened {
+    animation: moveDown 2s forwards;
+}
+
+@keyframes rotateBottom {
+    from {
+        transform: rotate(154deg);
+    }
+
+    to {
+        bottom: -597px;
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes moveDown {
+    0% {
+        bottom: -597px;
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #circle {
+        width: 20vw;
+        height: 20vw;
+        top: calc(50% - 10vw);
+        left: calc(50% - 10vw);
+    }
+}
+
+.container-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: black;
+    z-index: 80;
+
+
+}
+
+.container-video video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: 80;
+}
+
+.container-video.reveal {
+    animation: reveal 2.5s forwards;
+
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+.container-video span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 81;
+}
+
+
+
+@keyframes expandFromCenter {
+    0% {
+        width: 0;
+        height: 0;
+    }
+
+    100% {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 88;
+}
+
+
+
+
+#expandingCircle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    /* Contenedor rojo que será ocultado */
+    clip-path: circle(0% at 50% 50%);
+
+
+}
+
+#expandingCircle.expaned {
+    /* Iniciar con un círculo de tamaño 0% en el centro */
+    animation: expandCircle 3s forwards;
+
+    z-index: 90;
+
+
+}
+
+@keyframes expandCircle {
+    to {
+
+        clip-path: circle(75% at 50% 50%);
+        /* Expandir el círculo hasta un tamaño que cubra la pantalla */
+    }
+}
+
+.main-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1040px auto;
+    min-height: 100vh;
+    overflow: hidden;
+    scroll-snap-type: y mandatory;
+}
+
+.main-container,
+.container-principal {
+    min-height: 100vh;
+    /* Establecer la altura mínima para cubrir toda la altura del viewport */
+    overflow: hidden;
+    /* Ocultar el contenido desbordado para evitar el scroll */
+}
+
+
+.menu-lateral {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: 250px;
+    height: 100%;
+    padding: 20px 15px;
+    overflow: hidden;
+    background-color: var(--color-barra-lateral);
+    transition: width 0.7s ease, background-color 0.7s ease;
+    margin-left: 20px;
+    z-index: 60;
+    background-color: transparent;
+    top: calc(50% - 250px);
+    left: calc(26% - 250px);
+}
+
+
+
+
+
+
+.menu-lateral ul {
+    margin-top: 10px;
+    padding: 0;
+    width: 100%;
+    height: fit-content;
+}
+
+.menu-lateral li {
+    list-style: none;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.menu-lateral li:hover {
+
+    background-color: whitesmoke;
+}
+
+.menu-lateral li a:hover,
+.menu-lateral li a:focus-within {
+    color: rgba(255, 255, 0, 0.641);
+}
+
+.menu-lateral a {
+
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+
+}
+
+.menu-lateral a ion-icon {
+
+    min-width: 50px;
+    font-size: 20px;
+}
+
+
+.container-redes {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 60;
+    width: -webkit-fill-available;
+    height: 100vh;
+
+}
+
+.container-redes .container-redes__item a ion-icon {
+    min-width: 50px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.container-redes span {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: rgb(0, 0, 0);
+    writing-mode: vertical-rl;
+    /* Texto de arriba hacia abajo */
+    transform: rotate(180deg);
+}
+
+.workspace {
+    position: absolute;
+    /* Posición relativa para que ocupe el espacio normal en el flujo del documento */
+    width: 100%;
+    /* Ancho completo */
+    height: 100vh;
+    /* Altura ajustada al viewport */
+    z-index: 1;
+
+
+}
+
+.workspace img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.container-principal {
+
+
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    scroll-snap-type: y mandatory;
+}
+
+/* 
+barra de carga loading */
+#loadingIndicator {
+    display: flex;
+    position: fixed;
+    top: calc(50% - 220px);
+
+    
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    z-index: 80;
+}
+
+.progress-container {
+   
+    background-color: #ddd;
+    padding: 3px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 40px;
+    width: 60%;
+}
+
+.progress-bar {
+    
+    /* height: 30px; */
+    /* background-color: #4CAF50; */
+   
+ 
+    line-height: 30px;
+    color: white;
+  
+    /* 
+    Add a little spice by having a shadow below the bar.
+    Feel free to comment out this line below to have an even LITE version :D 
+    */
+    box-shadow: 0 10px 40px -10px #fff;
+
+    border-radius: 100px;
+    background: #fff;
+    height: 30px;
+    width: 0;
+}
+
+.progress-bar span {
+    margin-left: 5px;
+    color: #fff;
+    font-weight: bolder;
+}
+
+
+
+
+
+/* .progress-bar::after {
+    content: "0%";
+    position: absolute;
+    right: 10px;
+    color: #fff;
+    font-weight: bold;
+} */
