@@ -70,18 +70,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 80;
+  
     background: transparent;
 }
 #circle img {
-    position: absolute;
+   
     width: 10vw;
     /* Cambiado a unidades relativas */
     height: 10vw;
     background-color: transparent;
     border-radius: 50%;
-    top: calc(50% - 5vw);
-    left: calc(50% - 5vw);
+    /* top: calc(50% - 5vw);
+    left: calc(50% - 5vw); */
     animation: rotate 4s forwards;
     z-index: 100;
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -105,49 +105,57 @@ body {
     position: absolute;
     width: 150%;
     height: 150%;
-    top: -420px;
-    right: -33px;
-    left: 1000;
+    top: -63%;
+    right: -0.033%;
+    
     z-index: 90;
+   
     background: linear-gradient(to right, #F7931E, #FFBA31, #FFD279, #FFBA31, #F7931E);
     animation: rotateTop 4s forwards;
 }
 
 #topHalf.opened {
+    top: -93%;
     animation: moveUp 2s forwards;
 }
 
 @keyframes rotateTop {
     0% {
-        transform: rotate(154deg);
+        
+        transform: rotate(155deg);
     }
 
     100% {
+        top: -93%;
         transform: rotate(180deg);
     }
 }
 
 #bottomHalf {
     position: absolute;
+    
     width: 150%;
     height: 150%;
-    bottom: -497px;
+    bottom: -83.4%;
     background: linear-gradient(to right, #F7931E, #FFBA31, #FFD279, #FFBA31, #F7931E);
     z-index: 90;
+   
     animation: rotateBottom 4s forwards;
 }
 
 #bottomHalf.opened {
+    bottom: -103.4%;
     animation: moveDown 2s forwards;
 }
 
 @keyframes rotateBottom {
     from {
-        transform: rotate(154deg);
+       
+        transform: rotate(155deg);
     }
 
     to {
-        bottom: -597px;
+        bottom: -103.4%;
         transform: rotate(180deg);
     }
 }
@@ -164,7 +172,7 @@ body {
 
 @keyframes moveDown {
     0% {
-        bottom: -597px;
+        
         transform: translateY(0);
     }
 
@@ -292,7 +300,7 @@ body {
 .main-container {
     position: relative;
     display: grid;
-    grid-template-columns: 1040px auto;
+    grid-template-columns: 1350px auto;
     min-height: 100vh;
     overflow: hidden;
     scroll-snap-type: y mandatory;
@@ -436,11 +444,11 @@ barra de carga loading */
 #loadingIndicator {
     display: flex;
     position: fixed;
-    top: calc(50% - 220px);
+    top: calc(50% + 10vh);
 
     
     width: 50%;
-    height: 100%;
+    
     background: transparent;
     justify-content: center;
     align-items: center;
@@ -459,8 +467,8 @@ barra de carga loading */
     position: relative;
     padding: 0 5px;
     display: flex;
-    height: 40px;
-    width: 60%;
+    height: 3px;
+    width: 20%;
 }
 
 .progress-bar {
@@ -469,8 +477,7 @@ barra de carga loading */
     /* background-color: #4CAF50; */
    
  
-    line-height: 30px;
-    color: white;
+  
   
     /* 
     Add a little spice by having a shadow below the bar.
@@ -480,8 +487,10 @@ barra de carga loading */
 
     border-radius: 100px;
     background: #fff;
-    height: 30px;
+    height: 3px;
     width: 0;
+    line-height: 30px;
+    color: white;
 }
 
 .progress-bar span {
